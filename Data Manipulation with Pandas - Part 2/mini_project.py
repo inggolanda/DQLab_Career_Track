@@ -6,7 +6,23 @@ retail_data2 = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/10%25_o
 retail_data3 = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/10%25_original_randomstate%3D42/retail_data_from_7_until_9_reduce.csv')
 retail_data4 = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/10%25_original_randomstate%3D42/retail_data_from_10_until_12_reduce.csv')
 
-retail_table = pd.concat([retail_data1, retail_data2, retail_data3, retail_data4])
+print('PENGECEKAN DATA\n\n')
+#      Cek data sekilas (tampilkan 5 baris teratas)
+print(retail_data1.head())
+#      Cek list kolom untuk semua dataframe
+print('Kolom retail_data1: %s' %retail_data1.columns)
+print('Kolom retail_data2: %s' %retail_data2.columns)
+print('Kolom retail_data3: %s' %retail_data3.columns)
+print('Kolom retail_data4: %s' %retail_data4.columns)
+#      Concat multiple dataframe menjadi 1 dataframe
+retail_table = pd.concat([retail_data1,retail_data2,retail_data3,retail_data4])
+
+print('\nJumlah baris:', retail_table.shape[0])
+#      Pengecekan dataframe info
+print('\nInfo:')
+print(retail_table.info())
+#      Pengecekan statistik deskriptif
+print('\nStatistik deskriptif:\n', retail_table.describe())
 
 cek = retail_table.loc[(retail_table['item_price'] < 0) | (retail_table['total_price'] < 0)]
 if cek.shape[0] != 0:
